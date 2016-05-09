@@ -1,0 +1,56 @@
+CECS 343: Section 07/08
+
+Team SFX:
+Sina Astani: sinaastani@gmail.com
+Felipe Galaviz: fgalaviz057@gmail.com
+
+Project 3 - Merged
+
+Introduction:
+	At the current time, it implements the use cases: create a repository, check in & check out, as well as merging two project trees. 
+
+External Requirements:
+	This program requires the use of an external Jar file from Apache (Apache Commons IO) to allow the use
+	of the FileUtils.copy() method. There are no other requirements needed as this software should work on
+	Windows, Mac, and Linux based operating systems. Use of external libraries is thus very minimal.
+
+Build:
+	This programs uses Netbeans IDE 8.1/Eclipse to build the jar executable. Once the executable is built, there
+	are no other requirements needed to run the program. 
+
+Usage:
+	It is assumed that the source project tree is the repository's project tree. After getting input from the user, the 
+	program opens up the manifest file specified by the user and compares each file path with the one
+	in the target project tree path. If the file path contains the specified project tree the program 
+	then calls the compare method. This method covers three cases: 1. The leaf directory does not exist
+	in the target's project tree, 2. The leaf directory does exist but the article id is different than
+	the latest revision, 3. The leaf directory exists and the article id is the same as the latest revision.
+
+	For case 1, the compare method simply copies over the leaf folder with the article id to the target
+	project tree. In case 2, the compare method copies over the latest revision of the file to the 
+	target project tree and appends the "_MR" to its directory. Additionally it renames the directory of 
+	the current article file in the target project tree to its current name + "_MT". Lastly it looks at
+	the target project trees mom manifest file to backtrace to the last common ancestor file in the repository.
+	It then copies that file over to the target project tree and appends "_MR" to its directory. At this
+	time the repository's manifest file is updated to keep track of the merge. An equivalent log file is created in the tree with "_log" appended to the timestamp.
+	
+	We use a recursive function to find the common ancestor manifest file. Once that is obtained, we use the file to find the grandpa of the repo version and the tree version.
+	Given our somewhat simplified repo hierarchy, the grandpa file version was the same as the repo file version.
+
+Extra Features:
+	To make it simple for the user, a menu was created so the user can select one of five options:
+	create a repository, check in, check out, merge, or exit. This uses a switch statement that takes
+	in an integer input and displays an error when the user types in bad input through the use of exceptions.
+	Once a valid option is made, the appropriate method is called. Following the execution of that method,
+	the program returns to the selection menu to allow the user to select another option.
+
+	Unlike previous iterations, the most current version can be closed and restarted. Closing the program and starting it back at a later time does not effect proper functioning.
+	It finds the appropriate manifest directory as needed.
+
+Bugs:
+	In the prompt function it is assumed that the user will not type more than one word. Since we use the next()
+	method we ignore words that follow the first word; resulting in directories with no spaces.
+
+	As of 5/9 there are no known bugs with the merge function. Main success path as well as several other paths were tested and qualified to be working.
+	This assumes that the user behaves, and doesn't call a merge right after he already merged (user should clean up conflicting files on his own).
+	
