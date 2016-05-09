@@ -3,8 +3,11 @@ Basic version control system developed for CECS 343 Software Engineering class. 
 
 Functions:
 1) Create new repo
+
 2) Check in a project
+
 3) Check out a project
+
 4) Merge (sets up manual merge).
 
 Automerge yet to be implemented.
