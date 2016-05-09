@@ -16,5 +16,7 @@ Automerge yet to be implemented.
 Originally developed in C++, later updated to Java.
 
 Multiplatform: Supports Windows and Unix operating systems (Linux/MacOS)
+
 Requires the use of an external Jar file from Apache (Apache Commons IO) to allow the use
+
 of the FileUtils.copy() method. Use of external libraries (outside of Java standard library) is thus very minimal.
